@@ -130,7 +130,7 @@ def get_previous_questions_and_answers(user_id, limit=4):
         formatted_answer = str(result['answer'])
         formatted_results.append((formatted_question, formatted_answer))
     logging.debug(f"formatted_results: {formatted_results}")
-    return formatted_results[::-1]  # ここでリストを逆順にしています。
+    return formatted_results[::-1]  # ここでリストを逆順に
 
 
 
@@ -148,8 +148,7 @@ def get_answer(user_id, question):
             messages.append({"role": "assistant", "content": f"{len(previous_qa) - i}個前の解答: {a}"})
         messages.append( {"role": "system", "content": "you are a helpful assistant"})
         messages.append({"role": "user", "content": f"今回の質問{question}"})
-        # Add this line to log the messages
-        logging.debug(f"messages: {messages}")
+        #logging.debug(f"messages: {messages}")
         res = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=messages
@@ -163,8 +162,7 @@ def get_answer(user_id, question):
             messages.append({"role": "assistant", "content": f"{len(previous_qa) - i}個前の解答: {a}"})
         messages.append( {"role": "system", "content": "you are a helpful assistant"})
         messages.append({"role": "user", "content": f"今回の質問{question}"})
-        # Add this line to log the messages
-        logging.debug(f"messages: {messages}")
+        #logging.debug(f"messages: {messages}")
         res = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=messages
